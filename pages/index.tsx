@@ -21,16 +21,19 @@ const Table = () => {
       <select
         name="csv-file-paths"
         onChange={({ target: { value } }) => {
-          console.log(value);
           setFilePath(value);
         }}
       >
+        {/* A public file under the /public directory. */}
         <option value="sample.csv">/public/sample.csv</option>
+        {/* Files downloaded from the api routes. */}
         <option value="/api/download-csv?filename=1">/storage/1.csv</option>
         <option value="/api/download-csv?filename=2">/storage/2.csv</option>
+        {/* The option below thwrows an error. */}
         <option value="/api/download-csv?filename=empty">/storage/empty.csv</option>
       </select>
       <div>
+        {/* The table will be updated as the `key` changes. */}
         <PivotTable filePath={filePath} key={filePath} />
       </div>
     </>
